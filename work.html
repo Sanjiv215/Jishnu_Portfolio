@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work | Jishnu Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --bg: #0b0f0d;
+            --surface: rgba(255, 255, 255, .06);
+            --surface2: rgba(255, 255, 255, .035);
+            --line: rgba(255, 255, 255, .1);
+            --text: #f5f7f6;
+            --muted: #9ea9a2;
+            --primary: #57b58a;
+            --primary-dark: #469874;
+            --warm: #d9a76a;
+        }
+
+        body {
+            background:
+                linear-gradient(135deg, rgba(87, 181, 138, .14), transparent 34%),
+                linear-gradient(315deg, rgba(217, 167, 106, .1), transparent 30%),
+                var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(11, 15, 13, .72);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: .3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: .3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        .work-hero {
+            padding: 150px 8% 58px;
+        }
+
+        .eyebrow {
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+
+        h1 {
+            max-width: 900px;
+            font-size: 64px;
+            line-height: 1.06;
+            letter-spacing: 0;
+            margin-bottom: 20px;
+            animation: up .9s ease forwards;
+        }
+
+        .desc {
+            color: var(--muted);
+            font-size: 18px;
+            line-height: 1.9;
+            max-width: 760px;
+            opacity: 0;
+            animation: up .9s .2s forwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 13px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        .secondary {
+            border: 1px solid var(--line);
+            color: var(--text);
+            background: var(--surface);
+        }
+
+        .secondary:hover {
+            background: rgba(255, 255, 255, .09);
+        }
+
+        section {
+            padding: 50px 8% 80px;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            align-items: end;
+            margin-bottom: 28px;
+        }
+
+        .title {
+            font-size: 42px;
+            margin-bottom: 18px;
+            letter-spacing: 0;
+        }
+
+        .portfolio {
+            display: grid;
+            gap: 34px;
+        }
+
+        .client,
+        .media-card {
+            background: var(--surface2);
+            border: 1px solid var(--line);
+            backdrop-filter: blur(14px);
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: .7s;
+        }
+
+        .client {
+            padding: 24px;
+        }
+
+        .client.show,
+        .media-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .media-card:hover {
+            transform: translateY(-6px);
+            background: var(--surface);
+        }
+
+        .client-top {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 18px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .client h2 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .client p,
+        .media-card p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        .tag {
+            border: 1px solid var(--line);
+            color: var(--text);
+            background: rgba(255, 255, 255, .05);
+            padding: 7px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .media-card {
+            overflow: hidden;
+        }
+
+        .media-card iframe,
+        .media-card img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            object-fit: cover;
+            border: 0;
+            background: #111;
+        }
+
+        .media-card.static img {
+            aspect-ratio: 4 / 5;
+            object-fit: contain;
+        }
+
+        .media-card figcaption {
+            padding: 14px;
+        }
+
+        .media-card h3 {
+            font-size: 15px;
+            margin-bottom: 5px;
+            line-height: 1.35;
+        }
+
+        footer {
+            padding: 35px 8%;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        @keyframes up {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media(max-width:1050px) {
+            .media-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media(max-width:900px) {
+            h1 {
+                font-size: 48px;
+            }
+
+            .title {
+                font-size: 34px;
+            }
+
+            .section-head,
+            .client-top {
+                grid-template-columns: 1fr;
+            }
+
+            .tag-row {
+                justify-content: flex-start;
+            }
+        }
+
+        @media(max-width:650px) {
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .work-hero {
+                padding-top: 170px;
+            }
+
+            h1 {
+                font-size: 38px;
+            }
+
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a class="logo" href="index.html">JISHNU</a>
+
+        <ul>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a class="active" href="work.html">Work</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="work-hero">
+        <p class="eyebrow">Selected Work</p>
+        <h1>Client projects across reels, campaigns, podcasts and social creatives.</h1>
+        <p class="desc">
+            A grouped archive of Jishnu's work as a videographer, photographer and editor, organized by the companies and brands he has worked with.
+        </p>
+    </header>
+
+    <section>
+        <div class="section-head">
+            <div>
+                <h2 class="title">Work Archive</h2>
+                <p class="desc">Videos and images are embedded from the shared Google Drive portfolio folder.</p>
+            </div>
+            <a class="btn secondary" href="https://drive.google.com/drive/folders/1UVuUv4rS9iKczVFheLzzp-jdD6MfMJ-h?usp=sharing" target="_blank" rel="noreferrer">Open Drive</a>
+        </div>
+
+        <div class="portfolio">
+            <article class="client">
+                <div class="client-top">
+                    <div>
+                        <h2>BOMBAY DIGITAL</h2>
+                        <p>Beauty and skincare reels with clean product-led framing and social-first pacing.</p>
+                    </div>
+                    <div class="tag-row">
+                        <span class="tag">Beauty</span>
+                        <span class="tag">Reels</span>
+                        <span class="tag">Product</span>
+                    </div>
+                </div>
+
+                <div class="media-grid">
+                    <figure class="media-card">
+                        <iframe src="https://drive.google.com/file/d/1zgePpxrIe-I07ZSP4uqwLnT2c_Sy_7qA/preview" allow="autoplay" loading="lazy" title="Bombay Digital reel 1"></iframe>
+                        <figcaption>
+                            <h3>Skincare Reel</h3>
+                            <p>Short-form product visual.</p>
+                        </figcaption>
+                    </figure>
+                    <figure class="media-card">
+                        <iframe src="https://drive.google.com/file/d/1Os4XVg23VL2UpmsfMBA5lpHlqCShQWQd/preview" allow="autoplay" loading="lazy" title="Bombay Digital reel 2"></iframe>
+                        <figcaption>
+                            <h3>Beauty Campaign Cut</h3>
+                            <p>Social edit for brand recall.</p>
+                        </figcaption>
+                    </figure>
+                    <figure class="media-card">
+                        <iframe src="https://drive.google.com/file/d/1LF8v-O08mrgfK-28e1SokByyp9179_h-/preview" allow="autoplay" loading="lazy" title="Bombay Digital reel 3"></iframe>
+                        <figcaption>
+                            <h3>Product Detail Reel</h3>
+                            <p>Motion-led commercial visual.</p>
+                        </figcaption>
+                    </figure>
+                </div>
+            </article>
+
+            <article class="client">
+                <div class="client-top">
+                    <div>
+                        <h2>C CUBE MEDIA</h2>
+                        <p>Restaurant, cafe, real estate and UGC videos, with supporting static designs for social campaigns.</p>
+                    </div>
+                    <div class="tag-row">
+                        <span class="tag">Food</span>
+                        <span class="tag">Real Estate</span>
+                        <span class="tag">UGC</span>
+                        <span class="tag">Statics</span>
+                    </div>
+                </div>
+
+                <div class="media-grid">
+                    <figure class="media-card">
+                        <iframe src="https://drive.google.com/file/d/1e8Jt2cnGwl2oRdwt6OnTS2lywNlBs19e/preview" allow="autoplay" loading="lazy" title="C Cube cafe video"></iframe>
+                        <figcaption>
+                            <h3>Cafe Video</h3>
+                            <p>Food and venue reel.</p>
+                        </figcaption>
+                    </figure>
+                    <figure class="media-card">
+                        <iframe src="https://drive.google.com/file/d/1GkliTPWoPEur9qxeE7CHqChtoTpKps3p/preview" allow="autoplay" loading="lazy" title="C Cube content creation video"></iframe>
+                        <figcaption>
+                            <h3>Content Creation</h3>
+                            <p>Creator-style short video.</p>
+                        </figcaption>
+                    </figure>
+                    <figure class="media-card">
+                        <iframe src="https://drive.google.com/file/d/1DoJzo_tg4sXFnjzhio0pWyJjn7_ZGteQ/preview" allow="autoplay" loading="lazy" title="Trupti Cafe reel"></iframe>
+                        <figcaption>
+                            <h3>Trupti Cafe Reel</h3>
+                            <p>Restaurant campaign edit.</p>
+                        </figcaption>
+                    </figure>
+                    <figure class="media-card static">
+                        <img src="https://drive.google.com/thumbnail?id=1E4Gn5EBFh9pCD1C-toAJisV0apz-Pnk2&sz=w1000" alt="Gudi Padwa Trupti Cafe static">
+                        <figcaption>
+                            <h3>Gudi Padwa Static</h3>
+                            <p>Festival campaign creative.</p>
+                        </figcaption>
+                    </figure>
+                    <figure class="media-card static">
+                        <img src="https://drive.google.com/thumbnail?id=1rCGf-pUxeuGhBwCwUgwQcno4A-6MK3pJ&sz=w1000" alt="Ram Navami Trupti Cafe static">
+                        <figcaption>
+                            <h3>Ram Navami Static</h3>
+                            <p>Social media design.</p>
+                        </figcaption>
+                    </figure>
+                    <figure class="media-card static">
+                        <img src="https://drive.google.com/thumbnail?id=1GvW9vOTfmf_qZrhCfshaWg046pHJ5b2Q&sz=w1000" alt="Trupti Cafe February static">
+                        <figcaption>
+                            <h3>Cafe Static</h3>
+                            <p>Brand post creative.</p>
+                        </figcaption>
+                    </figure>
+                </div>
+            </article>
+
+            <article class="client">
+                <div class="client-top">
+                    <div>
+                        <h2>MERCADEO &amp; CIO</h2>
+                        <p>Podcast, founder-story and short-form business content edited for clarity and retention.</p>
+                    </div>
+                    <div class="tag-row">
+                        <span class="tag">Podcast</span>
+                        <span class="tag">Business</span>
+                        <span class="tag">Shorts</span>
+                    </div>
+                </div>
+
+                <div class="media-grid">
+                    <figure class="media-card">
+                        <iframe src="https://drive.google.com/file/d/1twCdR6zAWj-rG48gWKsM-1CUtKGEyenq/preview" allow="autoplay" loading="lazy" title="Mercadeo founder story short"></iframe>
+                        <figcaption>
+                            <h3>Founder Story</h3>
+                            <p>Chefling narrative short.</p>
+                        </figcaption>
+                    </figure>
+                    <figure class="media-card">
+                        <iframe src="https://drive.google.com/file/d/1gshRgYV27ugjXt38zd3DnO0mqh55U-7H/preview" allow="autoplay" loading="lazy" title="Chefling startup story"></iframe>
+                        <figcaption>
+                            <h3>Startup Story</h3>
+                            <p>Podcast-style brand film.</p>
+                        </figcaption>
+                    </figure>
+                    <figure class="media-card">
+                        <iframe src="https://drive.google.com/file/d/1b7rR_w8wnGxM8DZpVYUBrR5EkQIO-es2/preview" allow="autoplay" loading="lazy" title="Shark Tank business short"></iframe>
+                        <figcaption>
+                            <h3>Business Short</h3>
+                            <p>High-retention edit.</p>
+                        </figcaption>
+                    </figure>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Jishnu Portfolio
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.client,.media-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+
+</html>
