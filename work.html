@@ -237,10 +237,12 @@
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 16px;
+            align-items: start;
         }
 
         .media-card {
             overflow: hidden;
+            box-shadow: 0 18px 36px rgba(0, 0, 0, .18);
         }
 
         .media-card iframe,
@@ -251,6 +253,10 @@
             object-fit: cover;
             border: 0;
             background: #111;
+        }
+
+        .mobile-video-link {
+            display: none;
         }
 
         .media-card.static img {
@@ -312,27 +318,109 @@
         }
 
         @media(max-width:650px) {
+            body {
+                background:
+                    linear-gradient(135deg, rgba(87, 181, 138, .12), transparent 28%),
+                    var(--bg);
+            }
+
             nav {
                 flex-direction: column;
                 gap: 12px;
+                padding: 16px 6%;
             }
 
             nav ul {
-                gap: 15px;
+                gap: 14px;
                 flex-wrap: wrap;
                 justify-content: center;
             }
 
             .work-hero {
-                padding-top: 170px;
+                padding: 165px 6% 38px;
             }
 
             h1 {
                 font-size: 38px;
             }
 
+            section {
+                padding: 36px 4% 64px;
+            }
+
+            .client {
+                padding: 0;
+                border: 0;
+                background: transparent;
+                backdrop-filter: none;
+            }
+
+            .client-top {
+                margin-bottom: 16px;
+            }
+
             .media-grid {
                 grid-template-columns: 1fr;
+                justify-items: center;
+                gap: 20px;
+            }
+
+            .media-card {
+                width: min(100%, 380px);
+            }
+
+            .media-card.static {
+                width: min(100%, 400px);
+            }
+
+            .media-card iframe,
+            .media-card img {
+                border-bottom: 1px solid var(--line);
+            }
+
+            .media-card iframe {
+                display: none;
+            }
+
+            .mobile-video-link {
+                display: block;
+                position: relative;
+                color: var(--text);
+                text-decoration: none;
+                overflow: hidden;
+                background: #111;
+            }
+
+            .mobile-video-link img {
+                border-bottom: 1px solid var(--line);
+                filter: brightness(.82);
+            }
+
+            .mobile-video-link span {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 62px;
+                height: 62px;
+                border-radius: 50%;
+                background: rgba(87, 181, 138, .92);
+                color: #08110c;
+                font-size: 24px;
+                font-weight: 800;
+                box-shadow: 0 14px 30px rgba(0, 0, 0, .35);
+                padding-left: 4px;
+            }
+
+            .media-card figcaption {
+                padding: 13px 14px 15px;
+            }
+
+            .media-card h3 {
+                font-size: 16px;
             }
         }
     </style>
@@ -386,6 +474,10 @@
                 <div class="media-grid">
                     <figure class="media-card">
                         <iframe src="https://drive.google.com/file/d/1zgePpxrIe-I07ZSP4uqwLnT2c_Sy_7qA/preview" allow="autoplay" loading="lazy" title="Bombay Digital reel 1"></iframe>
+                        <a class="mobile-video-link" href="https://drive.google.com/file/d/1zgePpxrIe-I07ZSP4uqwLnT2c_Sy_7qA/view" target="_blank" rel="noreferrer" aria-label="Watch Skincare Reel">
+                            <img src="https://drive.google.com/thumbnail?id=1zgePpxrIe-I07ZSP4uqwLnT2c_Sy_7qA&sz=w1000" alt="Skincare Reel thumbnail">
+                            <span>▶</span>
+                        </a>
                         <figcaption>
                             <h3>Skincare Reel</h3>
                             <p>Short-form product visual.</p>
@@ -393,6 +485,10 @@
                     </figure>
                     <figure class="media-card">
                         <iframe src="https://drive.google.com/file/d/1Os4XVg23VL2UpmsfMBA5lpHlqCShQWQd/preview" allow="autoplay" loading="lazy" title="Bombay Digital reel 2"></iframe>
+                        <a class="mobile-video-link" href="https://drive.google.com/file/d/1Os4XVg23VL2UpmsfMBA5lpHlqCShQWQd/view" target="_blank" rel="noreferrer" aria-label="Watch Beauty Campaign Cut">
+                            <img src="https://drive.google.com/thumbnail?id=1Os4XVg23VL2UpmsfMBA5lpHlqCShQWQd&sz=w1000" alt="Beauty Campaign Cut thumbnail">
+                            <span>▶</span>
+                        </a>
                         <figcaption>
                             <h3>Beauty Campaign Cut</h3>
                             <p>Social edit for brand recall.</p>
@@ -400,6 +496,10 @@
                     </figure>
                     <figure class="media-card">
                         <iframe src="https://drive.google.com/file/d/1LF8v-O08mrgfK-28e1SokByyp9179_h-/preview" allow="autoplay" loading="lazy" title="Bombay Digital reel 3"></iframe>
+                        <a class="mobile-video-link" href="https://drive.google.com/file/d/1LF8v-O08mrgfK-28e1SokByyp9179_h-/view" target="_blank" rel="noreferrer" aria-label="Watch Product Detail Reel">
+                            <img src="https://drive.google.com/thumbnail?id=1LF8v-O08mrgfK-28e1SokByyp9179_h-&sz=w1000" alt="Product Detail Reel thumbnail">
+                            <span>▶</span>
+                        </a>
                         <figcaption>
                             <h3>Product Detail Reel</h3>
                             <p>Motion-led commercial visual.</p>
@@ -425,6 +525,10 @@
                 <div class="media-grid">
                     <figure class="media-card">
                         <iframe src="https://drive.google.com/file/d/1e8Jt2cnGwl2oRdwt6OnTS2lywNlBs19e/preview" allow="autoplay" loading="lazy" title="C Cube cafe video"></iframe>
+                        <a class="mobile-video-link" href="https://drive.google.com/file/d/1e8Jt2cnGwl2oRdwt6OnTS2lywNlBs19e/view" target="_blank" rel="noreferrer" aria-label="Watch Cafe Video">
+                            <img src="https://drive.google.com/thumbnail?id=1e8Jt2cnGwl2oRdwt6OnTS2lywNlBs19e&sz=w1000" alt="Cafe Video thumbnail">
+                            <span>▶</span>
+                        </a>
                         <figcaption>
                             <h3>Cafe Video</h3>
                             <p>Food and venue reel.</p>
@@ -432,6 +536,10 @@
                     </figure>
                     <figure class="media-card">
                         <iframe src="https://drive.google.com/file/d/1GkliTPWoPEur9qxeE7CHqChtoTpKps3p/preview" allow="autoplay" loading="lazy" title="C Cube content creation video"></iframe>
+                        <a class="mobile-video-link" href="https://drive.google.com/file/d/1GkliTPWoPEur9qxeE7CHqChtoTpKps3p/view" target="_blank" rel="noreferrer" aria-label="Watch Content Creation">
+                            <img src="https://drive.google.com/thumbnail?id=1GkliTPWoPEur9qxeE7CHqChtoTpKps3p&sz=w1000" alt="Content Creation thumbnail">
+                            <span>▶</span>
+                        </a>
                         <figcaption>
                             <h3>Content Creation</h3>
                             <p>Creator-style short video.</p>
@@ -439,6 +547,10 @@
                     </figure>
                     <figure class="media-card">
                         <iframe src="https://drive.google.com/file/d/1DoJzo_tg4sXFnjzhio0pWyJjn7_ZGteQ/preview" allow="autoplay" loading="lazy" title="Trupti Cafe reel"></iframe>
+                        <a class="mobile-video-link" href="https://drive.google.com/file/d/1DoJzo_tg4sXFnjzhio0pWyJjn7_ZGteQ/view" target="_blank" rel="noreferrer" aria-label="Watch Trupti Cafe Reel">
+                            <img src="https://drive.google.com/thumbnail?id=1DoJzo_tg4sXFnjzhio0pWyJjn7_ZGteQ&sz=w1000" alt="Trupti Cafe Reel thumbnail">
+                            <span>▶</span>
+                        </a>
                         <figcaption>
                             <h3>Trupti Cafe Reel</h3>
                             <p>Restaurant campaign edit.</p>
@@ -484,6 +596,10 @@
                 <div class="media-grid">
                     <figure class="media-card">
                         <iframe src="https://drive.google.com/file/d/1twCdR6zAWj-rG48gWKsM-1CUtKGEyenq/preview" allow="autoplay" loading="lazy" title="Mercadeo founder story short"></iframe>
+                        <a class="mobile-video-link" href="https://drive.google.com/file/d/1twCdR6zAWj-rG48gWKsM-1CUtKGEyenq/view" target="_blank" rel="noreferrer" aria-label="Watch Founder Story">
+                            <img src="https://drive.google.com/thumbnail?id=1twCdR6zAWj-rG48gWKsM-1CUtKGEyenq&sz=w1000" alt="Founder Story thumbnail">
+                            <span>▶</span>
+                        </a>
                         <figcaption>
                             <h3>Founder Story</h3>
                             <p>Chefling narrative short.</p>
@@ -491,6 +607,10 @@
                     </figure>
                     <figure class="media-card">
                         <iframe src="https://drive.google.com/file/d/1gshRgYV27ugjXt38zd3DnO0mqh55U-7H/preview" allow="autoplay" loading="lazy" title="Chefling startup story"></iframe>
+                        <a class="mobile-video-link" href="https://drive.google.com/file/d/1gshRgYV27ugjXt38zd3DnO0mqh55U-7H/view" target="_blank" rel="noreferrer" aria-label="Watch Startup Story">
+                            <img src="https://drive.google.com/thumbnail?id=1gshRgYV27ugjXt38zd3DnO0mqh55U-7H&sz=w1000" alt="Startup Story thumbnail">
+                            <span>▶</span>
+                        </a>
                         <figcaption>
                             <h3>Startup Story</h3>
                             <p>Podcast-style brand film.</p>
@@ -498,6 +618,10 @@
                     </figure>
                     <figure class="media-card">
                         <iframe src="https://drive.google.com/file/d/1b7rR_w8wnGxM8DZpVYUBrR5EkQIO-es2/preview" allow="autoplay" loading="lazy" title="Shark Tank business short"></iframe>
+                        <a class="mobile-video-link" href="https://drive.google.com/file/d/1b7rR_w8wnGxM8DZpVYUBrR5EkQIO-es2/view" target="_blank" rel="noreferrer" aria-label="Watch Business Short">
+                            <img src="https://drive.google.com/thumbnail?id=1b7rR_w8wnGxM8DZpVYUBrR5EkQIO-es2&sz=w1000" alt="Business Short thumbnail">
+                            <span>▶</span>
+                        </a>
                         <figcaption>
                             <h3>Business Short</h3>
                             <p>High-retention edit.</p>
